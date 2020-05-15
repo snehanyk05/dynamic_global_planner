@@ -15,7 +15,7 @@ void Mesh::displayMap()
 {
     
     cv::imshow("Image", input_image_);
-    cv::waitKey(0);
+    cv::waitKey(1);
     cv::destroyAllWindows();
 }
 
@@ -51,6 +51,7 @@ bool Mesh::checkObsInArea(int i, int j, int size)
 
 void Mesh::probabilisticMeshMake(int spacing_factor)
 {
+     ROS_INFO("In here");
     for(int i = 0; i < input_image_.rows; i+= spacing_factor)
     {
         for(int j = 0; j < input_image_.cols; j+= spacing_factor)
@@ -74,6 +75,7 @@ void Mesh::probabilisticMeshMake(int spacing_factor)
             }
         }
     }
+     ROS_INFO("Out of here");
 }
 
 void Mesh::displayMapwithCrowds()
@@ -95,7 +97,7 @@ void Mesh::displayMapwithCrowds()
         }
         
         cv::imshow("Graph", img);
-        cv::waitKey(0);
+        cv::waitKey(1);
         cv::destroyAllWindows();
     }
     return;
@@ -105,7 +107,8 @@ void Mesh::drawGraphonImage()
 {
     if(graph.size() > 0)
     {
-        cv::Mat img = cv::imread("/home/krishna/new_global_planner_ws/src/dynamic_global_planner/config/AddverbMap.png");
+        cv::Mat img = cv::imread("/home/sneha/catkin_ws/src/warehouse/warehouse_orca/stage/AddverbMap.png");
+        // cv::imshow("Graph", img);
         for(auto a: graph)
         {
             int x = (int)(a->getX()*10);
@@ -136,7 +139,7 @@ void Mesh::drawGraphonImage()
             y = y1;
         }
         cv::imshow("Graph", img);
-        cv::waitKey(0);
+        cv::waitKey(1);
         cv::destroyAllWindows();
     }
     return;
